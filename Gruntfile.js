@@ -4,11 +4,30 @@ module.exports = function (grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		jshint: {
 			files: ['Gruntfile.js', 'src/**/*.js']
+		},
+		watch: {
+			files: [ '**/**'],
+			tasks: ['jshint'],
+			options: {
+				livereload: true
+			}
+		},
+		connect: {
+			server: {
+				options: {
+					port: 8090,
+					base: 'src'
+				}
+			}
+
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-connect');
 
+	grunt.registerTask('serve', ['jshint', 'connect:server', 'watch']);
 	grunt.registerTask('default', ['jshint']);
 
 };
