@@ -2,17 +2,16 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
 
-    pkg: grunt.file.readJSON('package.json'),
-    jshint: {
-      files: ['Gruntfile.js', 'src/**/*.js']
-    },
-
     watch: {
       files: [ '**/**'],
       tasks: [ 'jshint', 'build' ],
       options: {
         livereload: true
       }
+    },
+
+    jshint: {
+      all: ['src/**/*.js', 'Gruntfile.js']
     },
 
     connect: {
